@@ -5,6 +5,7 @@ from hackernews import HackerNews
 from selenium import webdriver
 from PIL import Image
 from io import BytesIO
+import sys
 
 # Personalized Twitter API keys generated for Tweepy use; insert your own
 # Using .env file access through Heroku environment variables
@@ -13,6 +14,7 @@ consumer_secret = os.environ.get('CONSUMER_SECRET')
 access_token = os.environ.get('ACCESS_TOKEN')
 access_token_secret = os.environ.get('ACCESS_TOKEN_SECRET')
 print(consumer_key)
+sys.stdout.flush()
 # Instantiate Tweepy client with keys and tokens
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
