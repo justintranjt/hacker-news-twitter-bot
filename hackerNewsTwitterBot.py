@@ -1,15 +1,17 @@
 import datetime
 import tweepy
+import os
 from hackernews import HackerNews
 from selenium import webdriver
 from PIL import Image
 from io import BytesIO
 
 # Personalized Twitter API keys generated for Tweepy use; insert your own
-consumer_key = 'YOUR_KEY_HERE'
-consumer_secret = 'YOUR_SECRET_KEY_HERE'
-access_token = 'YOUR_TOKEN_HERE'
-access_token_secret = 'YOUR_SECRET_TOKEN_HERE'
+# Using .env file access through Heroku environment variables
+consumer_key = os.environ.get('CONSUMER_KEY')
+consumer_secret = os.environ.get('CONSUMER_SECRET')
+access_token = os.environ.get('ACCESS_TOKEN')
+access_token_secret = os.environ.get('ACCESS_TOKEN_SECRET')
 
 # Instantiate Tweepy client with keys and tokens
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
