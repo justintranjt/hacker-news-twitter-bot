@@ -6,10 +6,10 @@ from PIL import Image
 from io import BytesIO
 
 # Personalized Twitter API keys generated for Tweepy use; insert your own
-consumer_key = 'kmPYvryY2rwad8bjvNxX2te9Y'
-consumer_secret = 'mvQdOOq1uxFHInjPMZAv286xiLsXCSesQxSfoclctordS1MFZT'
-access_token = '900815751606620160-9Fkzq6WfkKZTfmkIE6Xz0EnyLoFxCNS'
-access_token_secret = 'hmWtlx11fZzVS8JUnSrU1C2iqf1mFqAidAv3cPJwO7ynT'
+consumer_key = 'YOUR_KEY_HERE'
+consumer_secret = 'YOUR_SECRET_KEY_HERE'
+access_token = 'YOUR_TOKEN_HERE'
+access_token_secret = 'YOUR_SECRET_TOKEN_HERE'
 
 # Instantiate Tweepy client with keys and tokens
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
