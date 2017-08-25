@@ -53,14 +53,14 @@ def refresh_posts():
 		story_time = story_id.submission_time
 		delta = current_time - story_time
 		# Chng. if bot runs per x hours
-		if delta >= datetime.timedelta(hours=4):
+		if delta > datetime.timedelta(hours=1):
 			continue
-		else:  # If younger than 4 hours: Tweets title, story URL, and comments
+		else:  # If younger than 1 hours: Tweets title, story URL, and comments
 			story_title = (story_id.title + '\n')
 			story_url = ('Link: ' + story_id.url + '\n')
 			story_comments = ('Comments: https://news.ycombinator.com/item?id=%s' %
 							  str(story_id.item_id))
-			#api.update_status(story_title + story_url + story_comments)
+			api.update_status(story_title + story_url + story_comments)
 
 
 if __name__ == '__main__':
