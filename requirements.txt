@@ -1,0 +1,5 @@
+haxor==0.4
+selenium==3.5.0
+tweepy==3.5.0
+Pillow==4.2.1
+hackernews==2.0.0
