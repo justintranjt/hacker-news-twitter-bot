@@ -1,1 +1,1 @@
-worker: hackerNewsTwitterBot.py
+worker: python hackerNewsTwitterBot.py
