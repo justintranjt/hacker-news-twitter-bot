@@ -38,7 +38,7 @@ def refresh_banner():
 	left = location['x']
 	upper = location['y']
 	right = location['x'] + size['width']
-	lower = size['height'] - 780  # Format for Twitter's autocrop
+	lower = size['height'] - 777  # Format for Twitter's autocrop
 	img = img.crop((left, upper, right, lower))  # Crop at defined points
 	img.save('screenshot.png')  # Saves cropped image
 	api.update_profile_banner('screenshot.png')  # Uploads cropped banner
