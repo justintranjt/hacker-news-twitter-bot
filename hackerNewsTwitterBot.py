@@ -54,7 +54,7 @@ def refresh_posts():
         else:
             story_title = (story_id.title + '\n')
 
-        story_comments = ('Cmts.: https://news.ycombinator.com/item?id=%s' %
+        story_comments = ('Cmts: https://news.ycombinator.com/item?id=%s' %
                           str(story_id.item_id))
 
         #  Check to see if post has an external link
