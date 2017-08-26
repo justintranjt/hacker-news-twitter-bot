@@ -1,8 +1,8 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-import hackerNewsTwitterBotLOCAL
+import hackerNewsTwitterBot
 
 sched = BlockingScheduler()
 
-sched.add_job(hackerNewsTwitterBotLOCAL.main, 'interval', hours=2)
+sched.add_job(hackerNewsTwitterBot.main, 'interval', hours=2)
 
 sched.start()
