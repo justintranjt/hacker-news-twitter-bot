@@ -42,10 +42,10 @@ def refresh_banner():
     img.save('screenshot.png')  # Saves cropped image
     api.update_profile_banner('screenshot.png')  # Uploads cropped banner
 
-# Tweets top 30 stories on Hacker News with no duplicates on Twitter feed
+# Tweets top 10 stories on Hacker News with no duplicates on Twitter feed
 def refresh_posts():
     hn = HackerNews()
-    for story in hn.top_stories(limit=30):  # Only viewing top 30 posts on HN
+    for story in hn.top_stories(limit=10):  # Only viewing top 10 posts on HN
         story_id = hn.get_item(story)
 
         #  Tweets title, story URL, and comments
