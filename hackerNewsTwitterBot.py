@@ -58,13 +58,13 @@ def refresh_posts():
                           str(story_id.item_id))
 
         #  Check to see if post has an external link
-        story_url = ('Link: ' + story_id.url + '\n')
         if story_id.url is None:
             try: # If tweet is a duplicate, ignores the post and doesn't tweet
                 api.update_status(story_title + story_comments)
             except tweepy.error.TweepError:
                 continue
         else:
+            story_url = ('Link: ' + story_id.url + '\n')
             # If tweet is a duplicate, ignores the post and doesn't tweet
             try:
                 api.update_status(story_title + story_url + story_comments)
