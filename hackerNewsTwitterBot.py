@@ -54,7 +54,7 @@ def refresh_posts():
 		story_time = story_id.submission_time
 		delta = current_time - story_time
 		# Chng. if bot runs per x hours
-		if delta > datetime.timedelta(hours=7):
+		if delta > datetime.timedelta(hours=4):
 			continue
 		else:  # If younger than 4 hours: Tweets title, story URL, and comments
 			if len(story_id.title) > 76: #  Adjusting for max tweet length
