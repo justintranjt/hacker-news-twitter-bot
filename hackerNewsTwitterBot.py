@@ -49,14 +49,14 @@ def refresh_posts():
 	for story in hn.top_stories(limit=10):  # Only viewing top 10 posts on HN
 		story_id = hn.get_item(story)
 
-		# Ignores post if posted over 4 hour ago (to avoid duplicate tweets)
+		# Ignores post if posted over 4 hours ago (to avoid duplicate tweets)
 		current_time = datetime.datetime.now()
 		story_time = story_id.submission_time
 		delta = current_time - story_time
 		# Chng. if bot runs per x hours
 		if delta > datetime.timedelta(hours=4):
 			continue
-		else:  # If younger than 4 hour: Tweets title, story URL, and comments
+		else:  # If younger than 4 hours: Tweets title, story URL, and comments
 			story_title = (story_id.title + '\n')
 			story_url = ('Link: ' + story_id.url + '\n')
 			story_comments = ('Comments: https://news.ycombinator.com/item?id=%s' %
