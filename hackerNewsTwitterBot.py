@@ -1,4 +1,3 @@
-import datetime
 import tweepy
 import os
 from hackernews import HackerNews
@@ -43,29 +42,26 @@ def refresh_banner():
 	img.save('screenshot.png')  # Saves cropped image
 	api.update_profile_banner('screenshot.png')  # Uploads cropped banner
 
-# Tweets top 10 stories on Hacker News with no duplicates
+# Tweets top 15 stories on Hacker News with no duplicates on Twitter feed
 def refresh_posts():
 	hn = HackerNews()
-	for story in hn.top_stories(limit=10):  # Only viewing top 10 posts on HN
+	for story in hn.top_stories(limit=15):  # Only viewing top 15 posts on HN
 		story_id = hn.get_item(story)
 
-		# Ignores post if posted over 4 hours ago (to avoid duplicate tweets)
-		current_time = datetime.datetime.now()
-		story_time = story_id.submission_time
-		delta = current_time - story_time
-		# Chng. if bot runs per x hours
-		if delta > datetime.timedelta(hours=4):
-			continue
-		else:  # If younger than 4 hours: Tweets title, story URL, and comments
-			if len(story_id.title) > 76: #  Adjusting for max tweet length
-				story_title = (story_id.title.rsplit(' ', 1)[0] + '\n')
-			else:
-				story_title = (story_id.title + '\n')
-				
-			story_url = ('Link: ' + story_id.url + '\n')
-			story_comments = ('Comments: https://news.ycombinator.com/item?id=%s' %
-							  str(story_id.item_id))
+		#  Tweets title, story URL, and comments
+		if len(story_id.title) > 76:  # Adjusting for max tweet length
+			story_title = (story_id.title.rsplit(' ', 1)[0] + '\n')
+		else:
+			story_title = (story_id.title + '\n')
+
+		story_url = ('Link: ' + story_id.url + '\n')
+		story_comments = ('Cmts.: https://news.ycombinator.com/item?id=%s' %
+						  str(story_id.item_id))
+		# If tweet is a duplicate, ignores the post and doesn't tweet
+		try:
 			api.update_status(story_title + story_url + story_comments)
+		except tweepy.error.TweepError:
+			continue
 
 def main():
 	refresh_banner()  # Refresh banner on Twitter page
@@ -73,4 +69,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
