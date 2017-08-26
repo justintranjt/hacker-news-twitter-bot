@@ -37,34 +37,36 @@ def refresh_banner():
 	img = Image.open(BytesIO(img))
 	left = location['x']
 	upper = location['y']
-	right = location['x'] + size['width'] - \
-		450  # Format for Twitter's autocrop
-	lower = size['height'] - 910  # Format for Twitter's autocrop
+	right = location['x'] + size['width']
+	lower = size['height'] - 772  # Format for Twitter's autocrop
 	img = img.crop((left, upper, right, lower))  # Crop at defined points
 	img.save('screenshot.png')  # Saves cropped image
 	api.update_profile_banner('screenshot.png')  # Uploads cropped banner
 
-# Tweets top 5 stories on Hacker News with no duplicates
+# Tweets top 10 stories on Hacker News with no duplicates
 def refresh_posts():
 	hn = HackerNews()
-	for story in hn.top_stories(limit=5):  # Only viewing top 5 posts on HN
+	for story in hn.top_stories(limit=10):  # Only viewing top 10 posts on HN
 		story_id = hn.get_item(story)
 
-		# Ignores post if posted over 1 hour ago (to avoid duplicate tweets)
+		# Ignores post if posted over 4 hour ago (to avoid duplicate tweets)
 		current_time = datetime.datetime.now()
 		story_time = story_id.submission_time
 		delta = current_time - story_time
 		# Chng. if bot runs per x hours
-		if delta > datetime.timedelta(hours=1):
+		if delta > datetime.timedelta(hours=4):
 			continue
-		else:  # If younger than 1 hour: Tweets title, story URL, and comments
+		else:  # If younger than 4 hour: Tweets title, story URL, and comments
 			story_title = (story_id.title + '\n')
 			story_url = ('Link: ' + story_id.url + '\n')
 			story_comments = ('Comments: https://news.ycombinator.com/item?id=%s' %
 							  str(story_id.item_id))
 			api.update_status(story_title + story_url + story_comments)
 
-
-if __name__ == '__main__':
+def main():
 	refresh_banner()  # Refresh banner on Twitter page
 	refresh_posts()  # Tweet new posts on Twitter page
+
+if __name__ == '__main__':
+	main()
+
