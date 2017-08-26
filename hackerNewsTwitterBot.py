@@ -57,7 +57,11 @@ def refresh_posts():
 		if delta > datetime.timedelta(hours=4):
 			continue
 		else:  # If younger than 4 hours: Tweets title, story URL, and comments
-			story_title = (story_id.title + '\n')
+			if len(story_id.title) > 76: #  Adjusting for max tweet length
+				story_title = (story_id.title.rsplit(' ', 1)[0] + '\n')
+			else:
+				story_title = (story_id.title + '\n')
+				
 			story_url = ('Link: ' + story_id.url + '\n')
 			story_comments = ('Comments: https://news.ycombinator.com/item?id=%s' %
 							  str(story_id.item_id))
