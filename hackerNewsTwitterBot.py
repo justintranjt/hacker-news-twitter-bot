@@ -25,7 +25,6 @@ def refresh_banner():
 	chrome_options.add_argument('--headless')
 	driver = webdriver.Chrome(executable_path=
 		'C:/Python/selenium/webdriver/chrome/chromedriver.exe', chrome_options=chrome_options)
-	#driver.set_window_size(1600, 900)
 	driver.get('https://news.ycombinator.com')
 	img = driver.get_screenshot_as_png()  # Save screenshot as binary data
 
