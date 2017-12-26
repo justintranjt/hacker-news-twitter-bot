@@ -24,6 +24,7 @@ def refresh_banner():
 	chrome_options = Options()
 	chrome_options.binary_location =  os.environ.get('GOOGLE_CHROME_SHIM')
 	chrome_options.add_argument('--headless')
+	chrome_options.add_argument('window-size=1400, 900')
 	driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=chrome_options)
 	driver.get('https://news.ycombinator.com')
 	img = driver.get_screenshot_as_png()  # Save screenshot as binary data
@@ -39,7 +40,7 @@ def refresh_banner():
 	left = location['x']
 	upper = location['y']
 	right = location['x'] + size['width']
-	lower = size['height'] - 777  # Format for Twitter's autocrop
+	lower = size['height'] - 800  # Format for Twitter's autocrop
 	img = img.crop((left, upper, right, lower))  # Crop at defined points
 	img.save('screenshot.png')  # Saves cropped image
 	api.update_profile_banner('screenshot.png')  # Uploads cropped banner
