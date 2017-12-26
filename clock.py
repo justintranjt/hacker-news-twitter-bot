@@ -3,6 +3,6 @@ import hackerNewsTwitterBot
 
 sched = BlockingScheduler()
 
-sched.add_job(hackerNewsTwitterBot.main, 'interval', minutes=1)
+sched.add_job(hackerNewsTwitterBot.main, 'interval', hours=1)
 
 sched.start()
