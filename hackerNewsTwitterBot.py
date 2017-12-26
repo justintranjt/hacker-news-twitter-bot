@@ -2,6 +2,7 @@ import tweepy
 import os
 from hackernews import HackerNews
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from PIL import Image
 from io import BytesIO
 
@@ -19,18 +20,18 @@ api = tweepy.API(auth)
 
 # Screenshots Hacker News posts and uploads to Twitter as banner
 def refresh_banner():
-    # Using Selenium and PhantomJS browser to screenshot Hacker News posts
-    # phantomJS_path = 'C:\\Python\\selenium\\webdriver\\phantomjs\\phantomjs.exe' LOCAL USE ONLY
-    driver = webdriver.PhantomJS()
-    driver.set_window_size(1600, 900)
-    driver.get('https://news.ycombinator.com')
-    img = driver.get_screenshot_as_png()  # Save screenshot as binary data
+    # Using Selenium and Chrome Headless browser to screenshot Hacker News posts
+    chrome_options = Options()
+	chrome_options.add_argument('--headless')
+	driver = webdriver.Chrome(executable_path=
+		'C:/Python/selenium/webdriver/chrome/chromedriver.exe', chrome_options=chrome_options)
+	#driver.set_window_size(1600, 900)
+	driver.get('https://news.ycombinator.com')
+	img = driver.get_screenshot_as_png()  # Save screenshot as binary data
 
     # Find element on page with posts and get element pixel location on page
     element = driver.find_element_by_tag_name('tbody')
-    print(element)
     location = element.location
-    print(location)
     size = element.size
     driver.quit()
 
