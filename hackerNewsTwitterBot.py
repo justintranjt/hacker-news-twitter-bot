@@ -20,11 +20,9 @@ api = tweepy.API(auth)
 
 # Screenshots Hacker News posts and uploads to Twitter as banner
 def refresh_banner():
-	chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
-	opts.binary_location = chrome_bin
-	
 	# Using Selenium and Chrome Headless browser to screenshot Hacker News posts
 	chrome_options = Options()
+	chrome_options.binary_location =  os.environ.get('GOOGLE_CHROME_SHIM')
 	chrome_options.add_argument('--headless')
 	driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=chrome_options)
 	driver.get('https://news.ycombinator.com')
