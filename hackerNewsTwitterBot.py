@@ -22,12 +22,15 @@ def refresh_banner():
     # Using Selenium and PhantomJS browser to screenshot Hacker News posts
     # phantomJS_path = 'C:\\Python\\selenium\\webdriver\\phantomjs\\phantomjs.exe' LOCAL USE ONLY
     driver = webdriver.PhantomJS()
+    driver.set_window_size(1600, 900)
     driver.get('https://news.ycombinator.com')
     img = driver.get_screenshot_as_png()  # Save screenshot as binary data
 
     # Find element on page with posts and get element pixel location on page
     element = driver.find_element_by_tag_name('tbody')
+    print(element)
     location = element.location
+    print(location)
     size = element.size
     driver.quit()
 
