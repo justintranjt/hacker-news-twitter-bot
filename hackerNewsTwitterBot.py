@@ -23,8 +23,7 @@ def refresh_banner():
 	# Using Selenium and Chrome Headless browser to screenshot Hacker News posts
 	chrome_options = Options()
 	chrome_options.add_argument('--headless')
-	driver = webdriver.Chrome(executable_path=
-		'C:/Python/selenium/webdriver/chrome/chromedriver.exe', chrome_options=chrome_options)
+	driver = webdriver.Chrome(chrome_options=chrome_options)
 	driver.get('https://news.ycombinator.com')
 	img = driver.get_screenshot_as_png()  # Save screenshot as binary data
 
