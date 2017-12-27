@@ -27,7 +27,9 @@ def refresh_banner():
 	chrome_options.add_argument('--disable-gpu')
 	chrome_options.add_argument('--no-sandbox')
 	chrome_options.add_argument('--window-size=1400, 900')
-	driver = webdriver.Chrome(executable_path="CHROMEDRIVER_PATH", chrome_options=chrome_options)
+	
+	chromedriver = os.environ.get('CHROMEDRIVER_PATH')
+	driver = webdriver.Chrome(executable_path = chromedriver, chrome_options = chrome_options)
 	driver.get('https://news.ycombinator.com')
 	img = driver.get_screenshot_as_png()  # Save screenshot as binary data
 
