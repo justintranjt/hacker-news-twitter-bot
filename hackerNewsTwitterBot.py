@@ -22,12 +22,12 @@ api = tweepy.API(auth)
 def refresh_banner():
 	# Using Selenium and Chrome Headless browser to screenshot Hacker News posts
 	chrome_options = Options()
-	chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_SHIM', None)
+	chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
 	chrome_options.add_argument('--headless')
 	chrome_options.add_argument('--disable-gpu')
 	chrome_options.add_argument('--no-sandbox')
 	chrome_options.add_argument('--window-size=1400, 900')
-	driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=chrome_options)
+	driver = webdriver.Chrome(executable_path="CHROMEDRIVER_PATH", chrome_options=chrome_options)
 	driver.get('https://news.ycombinator.com')
 	img = driver.get_screenshot_as_png()  # Save screenshot as binary data
 
